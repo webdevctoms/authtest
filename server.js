@@ -3,9 +3,10 @@ const express = require('express');
 const {PORT} = require('./config');
 const bodyParser = require("body-parser");
 const jsonParser = bodyParser.json();
+const {router: paymentPageRouter} = require('./routers/getAcceptPaymentPage');
 const app = express();
 app.use(jsonParser);
-
+app.use('/getPaymentPage',paymentPageRouter);
 let server;
 
 function runServer(port = PORT) {
