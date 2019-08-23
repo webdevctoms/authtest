@@ -2,18 +2,18 @@
 
 var ApiContracts = require('authorizenet').APIContracts;
 var ApiControllers = require('authorizenet').APIControllers;
-var constants = require('../constants.js');
+var {API_KEY,TRANSACTION_KEY} = require('../config.js');
 var randomStreetNumber = Math.round(Math.random() * 1000)
 
-function createCustomerPaymentProfile(customerProfileId, callback) {
+function createCustomerPaymentProfile(customerProfileId) {
 	let promise = new Promise((resolve,reject) => {
 
 		var merchantAuthenticationType = new ApiContracts.MerchantAuthenticationType();
-		merchantAuthenticationType.setName(constants.apiLoginKey);
-		merchantAuthenticationType.setTransactionKey(constants.transactionKey);
+		merchantAuthenticationType.setName(API_KEY);
+		merchantAuthenticationType.setTransactionKey(TRANSACTION_KEY);
 
 		var creditCard = new ApiContracts.CreditCardType();
-		creditCard.setCardNumber('4242424242424242');
+		creditCard.setCardNumber('4007000000027');
 		creditCard.setExpirationDate('0822');
 
 		var paymentType = new ApiContracts.PaymentType();
@@ -72,7 +72,7 @@ function createCustomerPaymentProfile(customerProfileId, callback) {
 				console.log('Null response received');
 			}
 
-			callback(response);
+			resolve(response);
 		});
 	});
 
