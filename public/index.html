@@ -8,8 +8,15 @@
   crossorigin="anonymous"></script>
 </head>
 <body>
-<p>Initial page</p>
-<button id='getPayment'>Get Payment Page</button>
-<script type="text/javascript" src='js/index.js'></script>
+	<p>Initial page</p>
+	<button id='getPayment'>Get Payment Page</button>
+
+	<form method="post" action="https://test.authorize.net/payment/payment" id="formAuthorizeNetTestPage" name="formAuthorizeNetTestPage">
+	<input id='tokenInput' type="hidden" name="token" value="Replace with form token from getHostedPaymentPageResponse" />
+	Continue to Authorize.Net to Payment Page
+	<button id="btnContinue">Continue to next page</button>
+
+	<script type="text/javascript" src='js/index.js'></script>
+</form>  
 </body>
 </html>
