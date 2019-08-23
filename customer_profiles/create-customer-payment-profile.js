@@ -13,7 +13,7 @@ function createCustomerPaymentProfile(customerProfileId) {
 		merchantAuthenticationType.setTransactionKey(TRANSACTION_KEY);
 
 		var creditCard = new ApiContracts.CreditCardType();
-		creditCard.setCardNumber('4007000000027');
+		creditCard.setCardNumber('4012888818888');
 		creditCard.setExpirationDate('0822');
 
 		var paymentType = new ApiContracts.PaymentType();
