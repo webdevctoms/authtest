@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
-const getAnAcceptPaymentPage = require('../accept_hosted/getAnAcceptPaymentPage');
+const createCustomerProfile = require('../customer_profiles/create-customer-profile');
 
-router.get('/',(req,res) => {
-	const profile = {customerProfileId : req.query.profileId};
-	return getAnAcceptPaymentPage(profile)
+router.post('/create',(req,res) => {
+	//const profileId = req.query.profileId;
+	return createCustomerProfile()
 
 	.then(response => {
 		return res.json({

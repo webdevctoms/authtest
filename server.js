@@ -4,9 +4,12 @@ const {PORT} = require('./config');
 const bodyParser = require("body-parser");
 const jsonParser = bodyParser.json();
 const {router: paymentPageRouter} = require('./routers/getAcceptPaymentPage');
+const {router: customerProfileRouter} = require('./routers/createCustomerProfile');
 const app = express();
+app.use(express.static('public'));
 app.use(jsonParser);
 app.use('/getPaymentPage',paymentPageRouter);
+app.use('/customer-profile',customerProfileRouter);
 let server;
 
 function runServer(port = PORT) {

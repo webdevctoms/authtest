@@ -2,8 +2,8 @@ var ApiContracts = require('authorizenet').APIContracts;
 var ApiControllers = require('authorizenet').APIControllers;
 var utils = require('../utils.js');
 var {API_KEY,TRANSACTION_KEY} = require('../config.js');
-
-function getAnAcceptPaymentPage() {
+//adjusted to work with a promise instead of callback
+function getAnAcceptPaymentPage(profile) {
 
 	let promise = new Promise((resolve,reject) => {
 		var merchantAuthenticationType = new ApiContracts.MerchantAuthenticationType();
@@ -13,7 +13,8 @@ function getAnAcceptPaymentPage() {
 		var transactionRequestType = new ApiContracts.TransactionRequestType();
 		transactionRequestType.setTransactionType(ApiContracts.TransactionTypeEnum.AUTHCAPTURETRANSACTION);
 		transactionRequestType.setAmount(utils.getRandomAmount());
-		
+		//may need to set this as object
+		transactionRequestType.setProfile(profile);
 		var setting1 = new ApiContracts.SettingType();
 		setting1.setSettingName('hostedPaymentButtonOptions');
 		setting1.setSettingValue('{\"text\": \"Pay\"}');
