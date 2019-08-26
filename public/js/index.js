@@ -1,8 +1,7 @@
-function Payment(payButtonId,payFormId,tokenInputId,submitButtonId){
+function Payment(payButtonId,payFormId,tokenInputId){
 	this.paymentButton = document.getElementById(payButtonId);
 	this.payForm = document.getElementById(payFormId);
 	this.tokenInput = document.getElementById(tokenInputId);
-	this.submitButton = document.getElementById(tokenInputId);
 	this.initButton(this.paymentButton);
 }
 
@@ -26,11 +25,12 @@ Payment.prototype.buttonClicked = function(e) {
 		console.log(response);
 		let token = response.response.token;
 		this.tokenInput.value = token;
+		$(this.payForm).submit();
 	})
 };
 
 function initPayment(){
-	let payment = new Payment('getPayment','formAuthorizeNetTestPage','tokenInput','btnContinue');
+	let payment = new Payment('getPayment','formAuthorizeNetTestPage','tokenInput');
 }
 
 window.onload = initPayment;
